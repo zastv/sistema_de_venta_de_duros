@@ -140,7 +140,7 @@ export default function Admin() {
       <Container>
         <div className="d-flex justify-content-between align-items-center mb-4">
           <div className="text-center">
-            <h2 className="fw-bold text-white">👨‍💼 Panel de Administración - Hugo's Delights</h2>
+            <h2 className="fw-bold text-white">👨‍💼 Panel de Administración - MarioDelights</h2>
             <p className="text-white-50">Gestiona sabores, inventario y consulta ventas</p>
           </div>
           <Button 

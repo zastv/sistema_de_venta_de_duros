@@ -132,7 +132,7 @@ export default function Reservar() {
             <Card className="shadow-lg border-0">
               <Card.Body className="p-4">
                 <div className="text-center mb-4">
-                  <h2 className="fw-bold text-success">🛒 Reservar en Hugo's Delights</h2>
+                  <h2 className="fw-bold text-success">🛒 Reservar en MarioDelights</h2>
                   <p className="text-muted">Selecciona tu sabor favorito y método de pago</p>
                 </div>
 

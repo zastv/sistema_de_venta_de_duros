@@ -37,7 +37,7 @@ export default function Navigation() {
       <Container>
         <LinkContainer to="/">
           <Navbar.Brand className="fw-bold">
-            ✨ Hugo's Delights
+            ✨ MarioDelights
           </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

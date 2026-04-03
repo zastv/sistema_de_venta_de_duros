@@ -30,7 +30,7 @@ export default function InformacionPago({ metodoPago, total = 0 }) {
           </Col>
           <Col md={6}>
             <div className="mb-3">
-              <strong>Beneficiario:</strong> Hugo's Delights
+              <strong>Beneficiario:</strong> MarioDelights
             </div>
             <div className="mb-3">
               <strong>Cédula:</strong> 8-123-456
@@ -78,7 +78,7 @@ export default function InformacionPago({ metodoPago, total = 0 }) {
             
             <div className="text-center mb-3">
               <strong>Nombre del Beneficiario:</strong>
-              <div className="fs-5 fw-bold">Hugo's Delights</div>
+              <div className="fs-5 fw-bold">MarioDelights</div>
             </div>
             
             <div className="text-center mb-4">

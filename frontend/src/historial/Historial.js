@@ -112,7 +112,7 @@ export default function Historial() {
           <div className="d-flex justify-content-between align-items-center mb-3">
             <div></div>
             <div>
-              <h2 className="fw-bold text-dark mb-0">📊 Historial de Ventas - Hugo's Delights</h2>
+              <h2 className="fw-bold text-dark mb-0">📊 Historial de Ventas - MarioDelights</h2>
             </div>
             <Button
               variant="outline-danger"

@@ -36,7 +36,7 @@ export default function LoginAdmin({ onLogin }) {
             <Card className="shadow-lg border-0">
               <Card.Body className="p-4">
                 <div className="text-center mb-4">
-                  <h2 className="fw-bold text-danger">🔐 Acceso Admin - Hugo's Delights</h2>
+                  <h2 className="fw-bold text-danger">🔐 Acceso Admin - MarioDelights</h2>
                   <p className="text-muted">Ingresa la contraseña de administrador</p>
                 </div>
 
