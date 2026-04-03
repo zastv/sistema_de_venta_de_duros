@@ -68,15 +68,6 @@ export default function Home() {
               </Card.Body>
             </Card>
           </Col>
-          <Col md={4}>
-            <Card className="text-center shadow-sm border-0 feature-card">
-              <Card.Body>
-                <div style={{ fontSize: '2rem' }}>💚</div>
-                <Card.Title>Ecológico</Card.Title>
-                <Card.Text>Ingredientes naturales.</Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
         </Row>
         <Row className="mt-5 text-center text-white">
           <Col>

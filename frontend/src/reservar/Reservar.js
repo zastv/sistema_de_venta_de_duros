@@ -16,14 +16,19 @@ export default function Reservar() {
   const [loading, setLoading] = useState(false);
   const [mensaje, setMensaje] = useState('');
   const [tipoMensaje, setTipoMensaje] = useState('success');
+  const [cargandoSabores, setCargandoSabores] = useState(true);
+  const [errorSabores, setErrorSabores] = useState('');
 
-  const selectedSabor = sabores.find((sabor) => sabor.id === formData.sabor_id)?.nombre || '';
+  const selectedSabor = sabores.find((sabor) => sabor.id === parseInt(formData.sabor_id, 10))?.nombre || '';
 
   useEffect(() => {
     cargarSaboresEInventario();
   }, []);
 
   const cargarSaboresEInventario = async () => {
+    setCargandoSabores(true);
+    setErrorSabores('');
+
     try {
       const { data: saboresData, error: saboresError } = await supabase
         .from('sabores')
@@ -32,10 +37,11 @@ export default function Reservar() {
         .order('nombre');
 
       if (saboresError) throw saboresError;
-      setSabores(saboresData || []);
+      const saboresList = saboresData || [];
+      setSabores(saboresList);
 
       // Cargar inventario para cada sabor
-      const inventarioPromises = saboresData.map(async (sabor) => {
+      const inventarioPromises = saboresList.map(async (sabor) => {
         const { data, error } = await supabase
           .from('inventario')
           .select('cantidad')
@@ -52,6 +58,11 @@ export default function Reservar() {
       setInventario(inventarioMap);
     } catch (error) {
       console.error('Error cargando datos:', error);
+      setErrorSabores('No se pudieron cargar los sabores. Verifica la conexión o activa los sabores disponibles.');
+      setSabores([]);
+      setInventario({});
+    } finally {
+      setCargandoSabores(false);
     }
   };
 
@@ -144,6 +155,12 @@ export default function Reservar() {
                   </Alert>
                 )}
 
+                {errorSabores && (
+                  <Alert variant="warning" className="text-center">
+                    {errorSabores}
+                  </Alert>
+                )}
+
                 <Form onSubmit={realizarReserva}>
                   <Form.Group className="mb-3">
                     <Form.Label className="fw-bold">Nombre</Form.Label>
@@ -166,6 +183,16 @@ export default function Reservar() {
                       required
                     >
                       <option value="">Selecciona un sabor</option>
+                      {cargandoSabores && (
+                        <option value="" disabled>
+                          Cargando sabores...
+                        </option>
+                      )}
+                      {!cargandoSabores && sabores.length === 0 && (
+                        <option value="" disabled>
+                          No hay sabores disponibles
+                        </option>
+                      )}
                       {sabores.map((sabor) => (
                         <option key={sabor.id} value={sabor.id}>
                           {sabor.nombre} ({inventario[sabor.id] || 0} disponibles)
