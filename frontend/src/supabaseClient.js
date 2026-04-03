@@ -18,7 +18,7 @@ export const verificarConexion = async () => {
   try {
     const { error } = await supabase
       .from('sabores')
-      .select('count')
+      .select('id', { count: 'exact' })
       .limit(1);
     
     if (error) {
