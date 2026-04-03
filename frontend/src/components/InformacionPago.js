@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Alert, Row, Col, Badge } from 'react-bootstrap';
 import { calcularTotal, formatearPrecio } from '../utils/config';
 
-export default function InformacionPago({ metodoPago, total = 0 }) {
+export default function InformacionPago({ metodoPago, total = 0, sabor = '' }) {
   if (!metodoPago || metodoPago === 'efectivo') {
     return null;
   }
@@ -66,13 +66,20 @@ export default function InformacionPago({ metodoPago, total = 0 }) {
           <div className="display-1 mb-3">📱</div>
           <h3 className="text-warning">Yappy</h3>
         </div>
+
+        {sabor && (
+          <div className="text-center mb-4">
+            <strong>Sabor seleccionado:</strong>
+            <div className="fs-5 fw-bold mt-2">{sabor}</div>
+          </div>
+        )}
         
         <Row className="justify-content-center">
           <Col md={8}>
             <div className="text-center mb-3">
               <strong>Número de Yappy para transferir:</strong>
               <div className="font-monospace bg-warning bg-opacity-25 p-3 rounded fs-4 fw-bold mt-2">
-                6123-4567
+                68127036
               </div>
             </div>
             
@@ -95,10 +102,10 @@ export default function InformacionPago({ metodoPago, total = 0 }) {
           <ol className="mb-0 mt-2">
             <li>Abre tu app de Yappy</li>
             <li>Selecciona "Enviar Dinero"</li>
-            <li>Ingresa el número: <strong>6123-4567</strong></li>
+            <li>Ingresa el número: <strong>68127036</strong></li>
             <li>Envía el monto exacto: <strong>{formatearPrecio(calcularTotal(total))}</strong></li>
             <li>En el concepto escribe tu nombre completo</li>
-            <li>Envía captura de pantalla por WhatsApp al: <strong>6123-4567</strong></li>
+            <li>Envía captura de pantalla por WhatsApp al: <strong>68127036</strong></li>
           </ol>
         </Alert>
       </Card.Body>

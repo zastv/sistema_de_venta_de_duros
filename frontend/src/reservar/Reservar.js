@@ -17,6 +17,8 @@ export default function Reservar() {
   const [mensaje, setMensaje] = useState('');
   const [tipoMensaje, setTipoMensaje] = useState('success');
 
+  const selectedSabor = sabores.find((sabor) => sabor.id === formData.sabor_id)?.nombre || '';
+
   useEffect(() => {
     cargarSaboresEInventario();
   }, []);
@@ -240,6 +242,7 @@ export default function Reservar() {
             <InformacionPago 
               metodoPago={formData.metodo_pago} 
               total={parseInt(formData.cantidad) || 0}
+              sabor={selectedSabor}
             />
           </Col>
 
