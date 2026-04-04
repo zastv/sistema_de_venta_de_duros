@@ -1,0 +1,144 @@
+╔══════════════════════════════════════════════════════════════╗
+║                                                              ║
+║  🎯  PROBLEMA: Error de Conexión con la Base de Datos       ║
+║                                                              ║
+║  ✅  SOLUCIÓN: Ejecutar el Backend Local                    ║
+║                                                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 SOLO 2 COMANDOS (en 2 terminales diferentes):
+
+┌─ TERMINAL 1 ─────────────────────────────────────────────────┐
+│                                                               │
+│  $ cd backend                                                 │
+│  $ npm install                                                │
+│  $ npm start                                                  │
+│                                                               │
+│  Espera a ver: "Servidor corriendo en http://localhost:3001" │
+│                                                               │
+└───────────────────────────────────────────────────────────────┘
+
+┌─ TERMINAL 2 ─────────────────────────────────────────────────┐
+│                                                               │
+│  $ cd frontend                                                │
+│  $ npm install                                                │
+│  $ npm start                                                  │
+│                                                               │
+│  Espera a ver: "Local: http://localhost:3000"                │
+│                                                               │
+└───────────────────────────────────────────────────────────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ LUEGO ABRE: http://localhost:3000
+
+¡El error debe desaparecer! ✅
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 DOCUMENTACIÓN DE AYUDA:
+
+  ⚠️_ERROR_CONEXION_SOLUCION.md  ← LEE ESTO PRIMERO
+  ├─ Explicación clara del error
+  ├─ Solución paso a paso
+  └─ Troubleshooting rápido
+
+  TARJETA_RAPIDA.md
+  ├─ Referencia rápida
+  ├─ Comandos exactos
+  └─ Checklist
+
+  RESUMEN_SOLUCION.md
+  ├─ Resumen completo
+  ├─ Arquitectura del sistema
+  └─ Lo que se cambió
+
+  INICIO_RAPIDO.md
+  ├─ Guía detallada
+  └─ Información completa
+
+  backend/README.md
+  └─ Documentación técnica
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔥 IMPORTANTE:
+
+  ✓ Backend PRIMERO
+  ✓ Frontend SEGUNDO
+  ✓ EN TERMINALES DIFERENTES
+  ✓ ESPERA A QUE AMBOS ESTÉN LISTOS
+
+⏰ Toma ~1-2 minutos la primera vez (npm install)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❓ ¿POR QUÉ PASA ESTO?
+
+  ANTES: Se usaba Supabase (online, en la nube)
+  AHORA: Se usa Backend Local + SQLite (en tu PC)
+
+  Frontend necesita Backend para:
+  • Obtener sabores
+  • Guardar reservas
+  • Sincronizar datos
+  • Ver historial
+
+  Si Backend no corre → Frontend no puede conectar
+                      → Error de conexión
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🧪 VERIFICA QUE FUNCIONE:
+
+  Terminal 3 (nueva):
+  $ curl http://localhost:3001/api/sabores
+
+  Deberías ver JSON con sabores (Oreo, Fresas Piña, Pay de Fresas)
+  Si ves error → Backend no está corriendo
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🆘 SI ALGO FALLA:
+
+  1. Terminal 1 muestra error?
+     → Elimina backend/node_modules
+     → Ejecuta: npm install && npm start
+
+  2. Puerto 3001 ya está en uso?
+     → Ejecuta: lsof -i :3001
+     → Luego: kill -9 [PID]
+     → Reinicia: npm start
+
+  3. Página http://localhost:3000 no carga?
+     → Abre DevTools (F12)
+     → Revisa "Console" para ver errores
+
+  4. Aún no funciona?
+     → Lee: ⚠️_ERROR_CONEXION_SOLUCION.md
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ VERIFICACIÓN FINAL:
+
+  □ Backend corriendo en http://localhost:3001
+  □ Frontend corriendo en http://localhost:3000
+  □ Abro http://localhost:3000 en navegador
+  □ NO veo error de conexión
+  □ VRREO sabores listados
+  □ PUEDO hacer una reserva
+  □ PUEDO ver panel admin
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+¡LISTO! 🎉
+
+Simplemente ejecuta los 2 comandos en 2 terminales
+y abre http://localhost:3000
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Última actualización: Abril 2026
+Estado: ✅ Completamente funcional
