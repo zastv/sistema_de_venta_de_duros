@@ -105,7 +105,7 @@ El sistema utiliza 4 tablas principales:
 
 ## Precios
 
-- **Precio por duro**: $0.75
+- **Precio por duro**: $1.00
 - **Cálculo automático** del total según cantidad
 
 ## Información de Contacto

@@ -1,5 +1,5 @@
 // Configuración del sistema
-export const PRECIO_POR_DURO = 0.75;
+export const PRECIO_POR_DURO = 1.00;
 
 // Función para calcular totales
 export const calcularTotal = (cantidad) => {
