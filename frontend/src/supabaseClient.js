@@ -88,6 +88,19 @@ export const apiClient = {
     if (!response.ok) throw new Error('Error creating sabor');
     return await response.json();
   },
+
+  updateInventario: async ({ sabor_id, cantidad }) => {
+    const response = await fetch(`${API_BASE_URL}/inventario`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ sabor_id, cantidad }),
+    });
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Error updating inventario');
+    }
+    return await response.json();
+  },
 };
 
 // Simular el cliente de Supabase para compatibilidad
@@ -196,10 +209,8 @@ async function insertIntoTable(table, data) {
   try {
     if (table === 'reservas') {
       await apiClient.createReserva(data[0]);
-    } else if (table === 'historial_ventas') {
-      // Se maneja automáticamente en la reserva
     } else if (table === 'inventario') {
-      // Se maneja automáticamente en la reserva
+      await apiClient.updateInventario(data[0]);
     }
     return { error: null };
   } catch (error) {
@@ -219,6 +230,5 @@ async function updateTable(table, data, condition) {
 }
 
 async function upsertTable(table, data) {
-  // Para inventario, es un insert que se maneja en la reserva
   return insertIntoTable(table, data);
 }

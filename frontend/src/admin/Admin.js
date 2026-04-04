@@ -155,7 +155,7 @@ export default function Admin() {
         {!conexionOk && (
           <Alert variant="danger" className="text-center">
             <strong>Error de conexión con la base de datos</strong><br/>
-            Por favor verifica que las tablas estén creadas en Supabase y las políticas RLS configuradas.
+            Por favor verifica que el backend local (`http://localhost:3001`) esté levantado y ejecutándose.
           </Alert>
         )}
 

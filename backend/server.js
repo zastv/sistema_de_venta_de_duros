@@ -62,6 +62,24 @@ app.get('/api/inventario/:saborId', (req, res) => {
   });
 });
 
+// Actualizar inventario para un sabor
+app.post('/api/inventario', (req, res) => {
+  const { sabor_id, cantidad } = req.body;
+  if (sabor_id == null || cantidad == null) {
+    res.status(400).json({ error: 'sabor_id y cantidad son requeridos' });
+    return;
+  }
+
+  db.run('INSERT INTO inventario (sabor_id, cantidad, fecha) VALUES (?, ?, date("now"))',
+    [sabor_id, cantidad], function(err) {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      res.json({ id: this.lastID, message: 'Inventario actualizado' });
+    });
+});
+
 // Crear reserva
 app.post('/api/reservas', (req, res) => {
   const { usuario, sabor_id, cantidad, metodo_pago } = req.body;
