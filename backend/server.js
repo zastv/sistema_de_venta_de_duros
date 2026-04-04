@@ -132,7 +132,7 @@ app.post('/api/reservas', (req, res) => {
 app.get('/api/reservas', (req, res) => {
   const { fecha } = req.query;
   let query = `
-    SELECT r.*, s.nombre as sabor_nombre, s.activo as sabor_activo
+    SELECT r.*, s.nombre AS sabor_nombre, s.activo AS sabor_activo
     FROM reservas r
     JOIN sabores s ON r.sabor_id = s.id
   `;
@@ -150,7 +150,14 @@ app.get('/api/reservas', (req, res) => {
       res.status(500).json({ error: err.message });
       return;
     }
-    res.json(rows);
+    const result = rows.map((row) => ({
+      ...row,
+      sabores: {
+        nombre: row.sabor_nombre,
+        activo: !!row.sabor_activo,
+      },
+    }));
+    res.json(result);
   });
 });
 
@@ -158,7 +165,7 @@ app.get('/api/reservas', (req, res) => {
 app.get('/api/ventas', (req, res) => {
   const { fecha } = req.query;
   let query = `
-    SELECT hv.*, s.nombre as sabor_nombre, s.activo as sabor_activo
+    SELECT hv.*, s.nombre AS sabor_nombre, s.activo AS sabor_activo
     FROM historial_ventas hv
     JOIN sabores s ON hv.sabor_id = s.id
   `;
@@ -176,14 +183,21 @@ app.get('/api/ventas', (req, res) => {
       res.status(500).json({ error: err.message });
       return;
     }
-    res.json(rows);
+    const result = rows.map((row) => ({
+      ...row,
+      sabores: {
+        nombre: row.sabor_nombre,
+        activo: !!row.sabor_activo,
+      },
+    }));
+    res.json(result);
   });
 });
 
 // Obtener ventas de hoy
 app.get('/api/ventas-hoy', (req, res) => {
   const query = `
-    SELECT hv.*, s.nombre as sabor_nombre
+    SELECT hv.*, s.nombre AS sabor_nombre, s.activo AS sabor_activo
     FROM historial_ventas hv
     JOIN sabores s ON hv.sabor_id = s.id
     WHERE date(hv.fecha) = date('now')
@@ -195,7 +209,14 @@ app.get('/api/ventas-hoy', (req, res) => {
       res.status(500).json({ error: err.message });
       return;
     }
-    res.json(rows);
+    const result = rows.map((row) => ({
+      ...row,
+      sabores: {
+        nombre: row.sabor_nombre,
+        activo: !!row.sabor_activo,
+      },
+    }));
+    res.json(result);
   });
 });
 

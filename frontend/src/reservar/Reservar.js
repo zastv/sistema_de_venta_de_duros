@@ -91,34 +91,12 @@ export default function Reservar() {
 
     setLoading(true);
     try {
-      // Crear reserva
+      // Crear reserva en el backend local; el endpoint actualiza historial y stock automáticamente.
       const { error: reservaError } = await supabase
         .from('reservas')
         .insert([formData]);
 
       if (reservaError) throw reservaError;
-
-      // Agregar a historial de ventas
-      const { error: historialError } = await supabase
-        .from('historial_ventas')
-        .insert([{
-          sabor_id: formData.sabor_id,
-          cantidad: formData.cantidad
-        }]);
-
-      if (historialError) throw historialError;
-
-      // Actualizar inventario
-      const nuevaCantidad = cantidadDisponible - formData.cantidad;
-      const { error: inventarioError } = await supabase
-        .from('inventario')
-        .upsert([{
-          sabor_id: formData.sabor_id,
-          cantidad: nuevaCantidad,
-          fecha: new Date().toISOString().split('T')[0]
-        }]);
-
-      if (inventarioError) throw inventarioError;
 
       setMensaje('¡Reserva realizada exitosamente!');
       setTipoMensaje('success');

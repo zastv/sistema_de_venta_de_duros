@@ -60,10 +60,10 @@ sistema_de_venta_de_duros/
 │   │   ├── reservar/       # Sistema de reservas
 │   │   ├── historial/      # Historial de ventas
 │   │   ├── components/     # Componentes compartidos
-│   │   └── supabaseClient.js
+│   │   └── supabaseClient.js # Cliente local que usa el backend SQLite
 │   └── package.json
 └── backend/
-    └── supabase_tables.sql # Esquema de base de datos
+    └── schema.sql         # Esquema de base de datos SQLite
 ```
 
 ## Funcionalidades

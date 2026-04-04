@@ -120,17 +120,11 @@ export const supabase = {
         lte: (column2, value2) => selectFromTable(table, { gte: { column, value }, lte: { column2, value2 } })
       })
     }),
-    insert: (data) => ({
-      then: (callback) => insertIntoTable(table, data).then(callback)
-    }),
+    insert: (data) => insertIntoTable(table, data),
     update: (data) => ({
-      eq: (column, value) => ({
-        then: (callback) => updateTable(table, data, { column, value }).then(callback)
-      })
+      eq: (column, value) => updateTable(table, data, { column, value })
     }),
-    upsert: (data) => ({
-      then: (callback) => upsertTable(table, data).then(callback)
-    })
+    upsert: (data) => upsertTable(table, data)
   })
 };
 
@@ -184,14 +178,15 @@ async function selectFromTable(table, filters = {}, limit = null) {
     }
 
     if (filters.order) {
+      const ascending = filters.order.ascending !== false;
       data.sort((a, b) => {
         const aVal = a[filters.order.column];
         const bVal = b[filters.order.column];
-        if (filters.order.ascending) {
+        if (aVal === bVal) return 0;
+        if (ascending) {
           return aVal > bVal ? 1 : -1;
-        } else {
-          return aVal < bVal ? 1 : -1;
         }
+        return aVal < bVal ? 1 : -1;
       });
     }
 
@@ -209,12 +204,20 @@ async function insertIntoTable(table, data) {
   try {
     if (table === 'reservas') {
       await apiClient.createReserva(data[0]);
+      return { data: null, error: null };
     } else if (table === 'inventario') {
       await apiClient.updateInventario(data[0]);
+      return { data: null, error: null };
+    } else if (table === 'sabores') {
+      const result = await apiClient.createSabor(data[0].nombre);
+      return {
+        data: [{ id: result.id, nombre: data[0].nombre, activo: true }],
+        error: null,
+      };
     }
-    return { error: null };
+    return { data: null, error: null };
   } catch (error) {
-    return { error };
+    return { data: null, error };
   }
 }
 
